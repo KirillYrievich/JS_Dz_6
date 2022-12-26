@@ -42,18 +42,26 @@
   /*
   1. Установите всем элементам с классом "productName" размер шрифта 24px.
    */
-
+  const productNameEl = document.querySelectorAll('.productName');
+  productNameEl.forEach(el => el.style.fontSize = '24px');
 
   /*
   2. Установите всем элементам с классом "product" внешний отступ справа 50px.
    */
-
+  const productEl = document.querySelectorAll('.product');
+  productEl.forEach(el => el.style.marginRight = '50px');
 
   /*
   3. При клике на кнопку "В корзину" название кнопки должно поменяться на
   "Добавлено" и кнопка должна стать неактивной.
    */
+  const buttonEls = document.querySelectorAll('button');
 
+  buttonEls.forEach(el => el.addEventListener('click', (event) => {
+    event.target.textContent = "Добавлено";
+    // event.disabled = true; не пойму где написать disabled что бы
+    // заблокировать кнопку
+  }));
 
   /*
   4. Создайте полную (глубокую) копию элемента с классом product, измените в
@@ -63,14 +71,31 @@
   отображенный товар на странице на созданную копию. У данной копии также
   должен правильно работать код из 3-го задания.
    */
-
-
+  // const productElCopy= document.querySelector('.product').cloneNode(true);
+  // productElCopy.querySelector('img');
+  // productElCopy.src = 'https://loremflickr.com/200/300/goods?lock=37';
+  // productElCopy.querySelector('.productName').textContent = 'Товар 4';
+  // document.querySelector('.product:last-of-type').replaceWith(productElCopy);
+  const productCopy = document.querySelector('.product').cloneNode(true);
+  productCopy
+    .querySelector('img')
+    .src = 'https://loremflickr.com/200/300/goods?lock=37';
+  productCopy.querySelector('.productName').textContent = 'Товар 4';
+  document.querySelector('.product:last-of-type').replaceWith(productCopy);
+  
+  // пробывал делать сам но у меня что то не та картинка вставляеться и не 
+  // работает код из 3-го задания. У Вас в коде тоже не работает из 3-го
+  // задания!
   /*
   5. По истечении 2 секунд с момента открытия страницы первый товар должен быть
   удален из html.
    */
-
-
+const productElRemove = document.querySelector('.product')
+setTimeout(function() {
+  productElRemove.remove('active');
+}, 2000);
+// нашел такую ф-цию на просторах интернета. У Вас конечно по короче написано 
+// но решил не копировать а немного самому поискать. 
 </script>
 </body>
 </html>
